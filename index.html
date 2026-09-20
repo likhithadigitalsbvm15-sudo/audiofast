@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- గూగుల్ సెర్చ్ SEO మెటా ట్యాగ్‌లు -->
+  <title>AudioFast Studio - ఫ్రీ ఆన్‌లైన్ ఆడియో బూస్టర్ & కట్టర్</title>
+  <meta name="description" content="ఉచితంగా మీ ఆడియో వాల్యూమ్‌ను 300% వరకు పెంచుకోండి మరియు ఆడియోను కట్ చేసి రింగ్‌టోన్‌గా మార్చుకోండి. ఎలాంటి సాఫ్ట్‌వేర్ అవసరం లేదు. 100% సేఫ్.">
+  <meta name="keywords" content="audio booster online, audio cutter, mp3 volume increase, telugu audio tools, free sound booster">
+  
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, sans-serif;
+    }
+    body {
+      background-color: #0b1329;
+      color: #f1f5f9;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    /* నావిగేషన్ బార్ */
+    nav {
+      background: #111e38;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #1e293b;
+    }
+    .logo {
+      color: #38bdf8;
+      font-size: 22px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+    .nav-links a:hover {
+      color: #38bdf8;
+    }
+
+    /* మెయిన్ కంటైనర్ */
+    .main-container {
+      max-width: 850px;
+      width: 92%;
+      margin: 30px auto;
+    }
+    .hero-text {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .hero-text h1 {
+      font-size: 30px;
+      color: #f8fafc;
+      margin-bottom: 8px;
+    }
+    .hero-text p {
+      color: #94a3b8;
+      font-size: 15px;
+    }
+
+    /* టూల్ బాక్స్ */
+    .tool-card {
+      background: #111e38;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid #1e293b;
+    }
+    .drop-zone {
+      border: 2px dashed #38bdf8;
+      background: #0b1329;
+      padding: 30px 20px;
+      text-align: center;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .drop-zone:hover {
+      background: #132247;
+    }
+    .drop-zone input[type="file"] {
+      display: none;
+    }
+    .upload-btn {
+      background: #2563eb;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: bold;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .file-status {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #38bdf8;
+    }
+
+    /* ఎడిటర్ ప్యానెల్ */
+    .editor-section {
+      display: none;
+      margin-top: 20px;
+      background: #0b1329;
+      border-radius: 10px;
+      padding: 20px;
+      border: 1px solid #1e293b;
+    }
+    .control-box {
+      margin-bottom: 18px;
+    }
+    .control-box label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: #cbd5e1;
+    }
+    .control-box span {
+      color: #38bdf8;
+      font-weight: bold;
+    }
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      background: #334155;
+      border-radius: 5px;
+      outline: none;
+      accent-color: #38bdf8;
+    }
+    .trim-inputs {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+    .trim-field {
+      flex: 1;
+    }
+    .trim-field label {
+      font-size: 13px;
+      color: #94a3b8;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .trim-field input {
+      width: 100%;
+      padding: 10px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: white;
+      border-radius: 6px;
+      outline: none;
+    }
+    audio {
+      width: 100%;
+      margin: 15px 0;
+      outline: none;
+    }
+    .action-btn {
+      width: 100%;
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 10px;
+    }
+    .action-btn:hover {
+      background: #059669;
+    }
+    .process-status {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #f59e0b;
+      display: none;
+    }
+
+    /* కంటెంట్ & గైడ్ సెక్షన్ (SEO & AdSense కోసం) */
+    .content-box {
+      margin-top: 35px;
+      background: #111e38;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #1e293b;
+    }
+    .content-box h2 {
+      font-size: 20px;
+      color: #38bdf8;
+      margin-bottom: 12px;
+    }
+    .content-box p {
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    .steps-list {
+      padding-left: 20px;
+      color: #cbd5e1;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .steps-list li {
+      margin-bottom: 8px;
+    }
+
+    /* ఫుటర్ */
+    footer {
+      background: #111e38;
+      padding: 25px;
+      text-align: center;
+      border-top: 1px solid #1e293b;
+      margin-top: auto;
+    }
+    .footer-links {
+      margin-bottom: 12px;
+    }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .footer-links a:hover {
+      color: #38bdf8;
+    }
+    footer p {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    /* లీగల్ మోడల్స్ (Privacy / Terms / Contact Popups) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      overflow-y: auto;
+    }
+    .modal-content {
+      background: #111e38;
+      margin: 5% auto;
+      padding: 30px;
+      width: 90%;
+      max-width: 650px;
+      border-radius: 12px;
+      border: 1px solid #3b82f6;
+      color: #cbd5e1;
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+      font-size: 24px;
+      color: #94a3b8;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: white;
+    }
+    .modal h2 {
+      color: #38bdf8;
+      margin-bottom: 15px;
+    }
+    .modal p {
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- నావిగేషన్ బార్ -->
+  <nav>
+    <a href="#" class="logo">🎵 AudioFast</a>
+    <div class="nav-links">
+      <a onclick="openModal('aboutModal')">About Us</a>
+      <a onclick="openModal('contactModal')">Contact</a>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <!-- హెడర్ టెక్స్ట్ -->
+    <div class="hero-text">
+      <h1>ఆన్‌లైన్ ఆడియో బూస్టర్ & కట్టర్</h1>
+      <p>బ్రౌజర్‌లోనే వాల్యూమ్ పెంచండి మరియు ఆడియో కట్ చేయండి – 100% ఉచితం & వేగవంతం</p>
+    </div>
+
+    <!-- టూల్ కార్డ్ -->
+    <div class="tool-card">
+      <div class="drop-zone" onclick="document.getElementById('audioFile').click()">
+        <div style="font-size: 40px; margin-bottom: 8px;">📁</div>
+        <h3>మీ ఆడియో లేదా పాటను ఇక్కడ అప్‌లోడ్ చేయండి</h3>
+        <p style="color: #94a3b8; font-size: 13px; margin-top: 4px;">MP3 మరియు WAV ఫార్మాట్‌లకు సపోర్ట్ ఉంది</p>
+        <div class="upload-btn">ఫైల్ సెలెక్ట్ చేయండి</div>
+        <input type="file" id="audioFile" accept="audio/*">
+        <div id="fileName" class="file-status">ఇంకా ఎలాంటి ఫైల్ ఎంచుకోలేదు</div>
+      </div>
+
+      <!-- ఎడిటింగ్ ప్యానెల్ -->
+      <div id="editorPanel" class="editor-section">
+        <h3 style="margin-bottom: 15px; font-size: 16px; color: #38bdf8;">ఎడిటింగ్ ఆప్షన్లు:</h3>
+
+        <!-- వాల్యూమ్ బూస్టర్ -->
+        <div class="control-box">
+          <label>
+            <span>🔊 సౌండ్ వాల్యూమ్ బూస్టర్ (Up to 300%):</span>
+            <span id="volText">100%</span>
+          </label>
+          <input type="range" id="volRange" min="1" max="3" step="0.1" value="1">
+        </div>
+
+        <!-- కట్టర్ -->
+        <div class="control-box">
+          <label>✂️ ఆడియో కట్టర్ (సెకన్లలో):</label>
+          <div class="trim-inputs">
+            <div class="trim-field">
+              <label>Start Time (సెకన్లు):</label>
+              <input type="number" id="startTime" value="0" min="0">
+            </div>
+            <div class="trim-field">
+              <label>End Time (సెకన్లు):</label>
+              <input type="number" id="endTime" value="30" min="1">
+            </div>
+          </div>
+        </div>
+
+        <audio id="audioPreview" controls></audio>
+
+        <button id="processBtn" class="action-btn">⚡ ప్రాసెస్ చేసి డౌన్‌లోడ్ చేయండి</button>
+        <div id="processStatus" class="process-status">ఆడియో ప్రాసెస్ అవుతోంది... వేచి ఉండండి.</div>
+      </div>
+    </div>
+
+    <!-- వివరణ & గైడ్ (గూగుల్ ర్యాంకింగ్ కోసం) -->
+    <div class="content-box">
+      <h2>ఈ టూల్‌ను ఎలా ఉపయోగించాలి?</h2>
+      <ol class="steps-list">
+        <li>పైన ఉన్న బటన్ క్లిక్ చేసి మీ మొబైల్ లేదా కంప్యూటర్ నుండి ఆడియో ఫైల్‌ను సెలెక్ట్ చేయండి.</li>
+        <li>వాల్యూమ్ తక్కువగా ఉంటే స్లైడర్ ద్వారా 300% వరకు వాల్యూమ్ పెంచుకోండి.</li>
+        <li>మీకు కావాల్సిన భాగం మాత్రమే ఉంచడానికి ప్రారంభ (Start) మరియు ముగింపు (End) సమయాలను నమోదు చేయండి.</li>
+        <li>"ప్రాసెస్ చేసి డౌన్‌లోడ్ చేయండి" పై క్లిక్ చేయగానే మీ ఎడిట్ చేసిన ఫైల్ వెంటనే డౌన్‌లోడ్ అవుతుంది.</li>
+      </ol>
+
+      <h2>మా ప్రత్యేకతలు:</h2>
+      <p>• <strong>డేటా ప్రైవసీ:</strong> మీ ఆడియో ఫైల్స్ ఏ సర్వర్‌కి వెళ్లవు. మీ బ్రౌజర్‌లోనే పూర్తిగా ప్రాసెస్ అవుతాయి కాబట్టి మీ డేటా 100% సేఫ్.</p>
+      <p>• <strong>ఉచిత సేవ:</strong> ఎలాంటి లాగిన్ లేదా సబ్‌స్క్రిప్షన్ లేకుండా నిరంతరం ఉచితంగా ఉపయోగించుకోవచ్చు.</p>
+    </div>
+  </div>
+
+  <!-- ఫుటర్ -->
+  <footer>
+    <div class="footer-links">
+      <a onclick="openModal('aboutModal')">About Us</a>
+      <a onclick="openModal('privacyModal')">Privacy Policy</a>
+      <a onclick="openModal('termsModal')">Terms of Service</a>
+      <a onclick="openModal('contactModal')">Contact Us</a>
+    </div>
+    <p>&copy; 2026 AudioFast Studio. All rights reserved.</p>
+  </footer>
+
+  <!-- పాప్-అప్ మోడల్స్ (Legal Pages for AdSense) -->
+  <div id="aboutModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('aboutModal')">&times;</span>
+      <h2>About AudioFast Studio</h2>
+      <p>AudioFast Studio అనేది కంటెంట్ క్రియేటర్లు, విద్యార్థులు మరియు సాధారణ వినియోగదారుల కోసం రూపొందించబడిన ఒక ఉచిత బ్రౌజర్-ఆధారిత ఆడియో టూల్ వేదిక.</p>
+      <p>ఎలాంటి ఖరీదైన సాఫ్ట్‌వేర్ల అవసరం లేకుండా బ్రౌజర్‌లోనే ఆడియోను బూస్ట్ చేయడం మరియు కట్ చేసుకోవడం మా టూల్ ద్వారా సులువుగా చేసుకోవచ్చు.</p>
+    </div>
+  </div>
+
+  <div id="privacyModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('privacyModal')">&times;</span>
+      <h2>Privacy Policy</h2>
+      <p>మేము మీ వ్యక్తిగత గోప్యతను గౌరవిస్తాము. AudioFast Studio పూర్తిగా క్లయింట్-సైడ్ (Client-Side) టెక్నాలజీపై పనిచేస్తుంది.</p>
+      <p>మీరు అప్‌లోడ్ చేసే ఏ ఒక్క ఆడియో ఫైల్ కూడా మా సర్వర్లలో స్టోర్ అవ్వదు. అన్ని ప్రక్రియలు మీ మొబైల్ లేదా కంప్యూటర్ లోపలే జరుగుతాయి.</p>
+    </div>
+  </div>
+
+  <div id="termsModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('termsModal')">&times;</span>
+      <h2>Terms of Service</h2>
+      <p>ఈ వెబ్‌సైట్‌ను చట్టబద్ధమైన మరియు వ్యక్తిగత అవసరాల కోసం ఎవరైనా ఉచితంగా ఉపయోగించవచ్చు.</p>
+      <p>కాపీరైట్ ఉల్లంఘనలకు సంబంధించి యూజర్లు అప్‌లోడ్ చేసే కంటెంట్‌కు వారే బాధ్యులుగా ఉంటారు.</p>
+    </div>
+  </div>
+
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeModal('contactModal')">&times;</span>
+      <h2>Contact Us</h2>
+      <p>మీకు ఏవైనా ప్రశ్నలు, సందేహాలు లేదా సలహాలు ఉంటే మమ్మల్ని సంప్రదించవచ్చు:</p>
+      <p>📧 Email: <strong>support@audiofast.studio</strong> (లేదా మీ పర్సనల్ ఈమెయిల్)</p>
+    </div>
+  </div>
+
+  <!-- స్క్రిప్ట్ లాజిక్ -->
+  <script>
+    const fileInput = document.getElementById('audioFile');
+    const fileName = document.getElementById('fileName');
+    const editorPanel = document.getElementById('editorPanel');
+    const audioPreview = document.getElementById('audioPreview');
+    const volRange = document.getElementById('volRange');
+    const volText = document.getElementById('volText');
+    const startTimeInput = document.getElementById('startTime');
+    const endTimeInput = document.getElementById('endTime');
+    const processBtn = document.getElementById('processBtn');
+    const processStatus = document.getElementById('processStatus');
+
+    let audioContext;
+    let originalAudioBuffer;
+    let selectedFile;
+
+    fileInput.addEventListener('change', async function(e) {
+      selectedFile = e.target.files[0];
+      if (!selectedFile) return;
+
+      fileName.innerText = "ఎంచుకున్న ఫైల్: " + selectedFile.name;
+      editorPanel.style.display = "block";
+
+      const fileURL = URL.createObjectURL(selectedFile);
+      audioPreview.src = fileURL;
+
+      audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const arrayBuffer = await selectedFile.arrayBuffer();
+      originalAudioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+
+      startTimeInput.value = 0;
+      endTimeInput.value = Math.floor(originalAudioBuffer.duration);
+    });
+
+    volRange.addEventListener('input', function() {
+      volText.innerText = Math.round(this.value * 100) + "%";
+    });
+
+    processBtn.addEventListener('click', async function() {
+      if (!originalAudioBuffer) return;
+
+      processStatus.style.display = "block";
+      processBtn.disabled = true;
+
+      const start = Math.max(0, parseFloat(startTimeInput.value));
+      const end = Math.min(originalAudioBuffer.duration, parseFloat(endTimeInput.value));
+      const volumeBoost = parseFloat(volRange.value);
+
+      if (start >= end) {
+        alert("ప్రారంభ సమయం ముగింపు సమయం కంటే తక్కువగా ఉండాలి!");
+        processStatus.style.display = "none";
+        processBtn.disabled = false;
+        return;
+      }
+
+      const duration = end - start;
+      const sampleRate = originalAudioBuffer.sampleRate;
+      const channels = originalAudioBuffer.numberOfChannels;
+
+      const offlineCtx = new OfflineAudioContext(channels, duration * sampleRate, sampleRate);
+      const source = offlineCtx.createBufferSource();
+      source.buffer = originalAudioBuffer;
+
+      const gain = offlineCtx.createGain();
+      gain.gain.value = volumeBoost;
+
+      source.connect(gain);
+      gain.connect(offlineCtx.destination);
+      source.start(0, start, duration);
+
+      const renderedBuffer = await offlineCtx.startRendering();
+      const wavBlob = bufferToWave(renderedBuffer, renderedBuffer.length);
+
+      const downloadUrl = URL.createObjectURL(wavBlob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = "AudioFast_Output.wav";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      processStatus.style.display = "none";
+      processBtn.disabled = false;
+    });
+
+    function bufferToWave(abuffer, len) {
+      let numOfChan = abuffer.numberOfChannels,
+          length = len * numOfChan * 2 + 44,
+          out = new DataView(new ArrayBuffer(length)),
+          channels = [], i, sample, offset = 0, pos = 0;
+
+      function setUint16(data) { out.setUint16(pos, data, true); pos += 2; }
+      function setUint32(data) { out.setUint32(pos, data, true); pos += 4; }
+
+      setUint32(0x46464952); setUint32(length - 8); setUint32(0x45564157);
+      setUint32(0x20746d66); setUint32(16); setUint16(1); setUint16(numOfChan);
+      setUint32(abuffer.sampleRate); setUint32(abuffer.sampleRate * 2 * numOfChan);
+      setUint16(numOfChan * 2); setUint16(16); setUint32(0x61746164);
+      setUint32(length - pos - 4);
+
+      for(i = 0; i < abuffer.numberOfChannels; i++) channels.push(abuffer.getChannelData(i));
+      while(pos < length) {
+        for(i = 0; i < numOfChan; i++) {
+          sample = Math.max(-1, Math.min(1, channels[i][offset]));
+          sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767)|0;
+          out.setInt16(pos, sample, true);
+          pos += 2;
+        }
+        offset++;
+      }
+      return new Blob([out], { type: "audio/wav" });
+    }
+
+    // మోడల్ విండోస్ ఫంక్షన్స్
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+    window.onclick = function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
